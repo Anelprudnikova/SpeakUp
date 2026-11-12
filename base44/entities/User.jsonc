@@ -1,0 +1,135 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "staff_role": {
+      "type": "string",
+      "enum": [
+        "employee",
+        "manager",
+        "chief"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "green"
+      ],
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    },
+    "account_type": {
+      "type": "string",
+      "enum": [
+        "staff",
+        "client"
+      ],
+      "enumColors": [
+        "blue",
+        "teal"
+      ],
+      "default": "staff"
+    },
+    "system_role": {
+      "type": "string",
+      "enum": [
+        "employee",
+        "admin",
+        "head",
+        "client_manager"
+      ],
+      "enumColors": [
+        "gray",
+        "purple",
+        "blue",
+        "yellow"
+      ],
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    },
+    "access_level": {
+      "type": "string",
+      "enum": [
+        "employee",
+        "admin",
+        "head",
+        "client_manager"
+      ],
+      "enumColors": [
+        "gray",
+        "purple",
+        "blue",
+        "yellow"
+      ],
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "department_id": {
+      "type": "string",
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    },
+    "position": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "ru",
+        "kk",
+        "en"
+      ],
+      "enumColors": [
+        "blue",
+        "green",
+        "yellow"
+      ]
+    },
+    "account_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "blocked"
+      ],
+      "enumColors": [
+        "green",
+        "red"
+      ],
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    }
+  }
+}
