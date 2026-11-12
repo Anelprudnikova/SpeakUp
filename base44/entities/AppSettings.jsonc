@@ -1,0 +1,39 @@
+{
+  "name": "AppSettings",
+  "type": "object",
+  "properties": {
+    "allow_confidential": {
+      "type": "boolean",
+      "default": true
+    },
+    "sla_first_response_days": {
+      "type": "number",
+      "default": 3
+    },
+    "sla_resolution_days": {
+      "type": "number",
+      "default": 10
+    },
+    "company_name": {
+      "type": "string"
+    }
+  },
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
