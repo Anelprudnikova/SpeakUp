@@ -1,40 +1,123 @@
-# Base44 App — TanStack Start
+# SpeakUp – информационная система обработки обращений
 
-A full-stack Base44 app: [TanStack Start](https://tanstack.com/start) (React 19, plain JavaScript) with file-based routes, server functions and server routes, server-rendered and hosted by Base44.
+**Твой голос важен.**
 
-## What is in the starter
+SpeakUp – веб-система для создания, распределения, обработки и контроля обращений сотрудников и внешних клиентов организации.
 
-| Route | File |
+Система помогает организовать взаимодействие между подразделениями, упростить передачу задач ответственным сотрудникам, контролировать сроки выполнения и отслеживать результаты рассмотрения обращений.
+
+---
+
+## Демонстрационная версия
+
+**Открыть SpeakUp:** [https://stirring-speak-up-flow.base44.app](https://stirring-speak-up-flow.base44.app)
+
+Система размещена на платформе Base44 и доступна через браузер.
+
+## Цель проекта
+
+Цель SpeakUp – создать единое цифровое пространство для сбора и обработки обращений, повысить прозрачность рабочих процессов, сократить время передачи информации между подразделениями и обеспечить контроль выполнения поставленных задач.
+
+## Основные возможности
+
+- Создание и отправка обращений.
+- Выбор категории, типа и приоритета обращения.
+- Распределение обращений между подразделениями.
+- Назначение ответственных сотрудников.
+- Установка и контроль сроков выполнения.
+- Обмен сообщениями и комментариями по обращениям.
+- Передача результатов руководителю на проверку.
+- Принятие результата или возврат на доработку.
+- Отслеживание статусов и истории обращений.
+- Получение уведомлений.
+- Просмотр аналитики и повторяющихся проблем.
+- Управление пользователями, подразделениями и категориями.
+- Ведение журнала действий.
+
+## Роли пользователей
+
+В системе предусмотрено разграничение доступа в зависимости от роли пользователя.
+
+| Роль | Основные возможности |
 | --- | --- |
-| `/` | `src/routes/index.jsx` — a server-rendered page whose loader calls a server function |
-| `GET /api/time` | `src/routes/api/time.js` — a server route: a raw HTTP endpoint next to the pages |
+| Администратор | Управление системой, пользователями, подразделениями, категориями и настройками |
+| Руководитель | Получение обращений своего подразделения, назначение исполнителей, контроль сроков и проверка результатов |
+| Сотрудник | Создание обращений, выполнение назначенных задач и просмотр собственных обращений |
+| Менеджер по работе с клиентами | Обработка обращений внешних клиентов и передача запросов в соответствующие подразделения |
+| Внешний клиент | Создание обращений, переписка и отслеживание собственных запросов |
 
-## Run locally
+## Технологии разработки
 
-```bash
-npm ci
-base44 login   # one-time per machine
-base44 link    # one-time per clone
-base44 dev     # local backend + app together
-```
+В проекте используются следующие технологии и инструменты:
 
-## Build and publish
+- **React 19** – библиотека для разработки пользовательского интерфейса.
+- **JavaScript** – основной язык программирования.
+- **TanStack Start** – фреймворк приложения.
+- **TanStack Router** – маршрутизация.
+- **Vite** – инструмент разработки и сборки.
+- **Tailwind CSS** – оформление интерфейса.
+- **Base44 SDK** – взаимодействие с платформой Base44.
+- **Cloudflare Vite Plugin** – интеграция с окружением Cloudflare.
 
-```bash
-npm run build         # -> dist/client (assets) + dist/server (the Worker)
-base44 deploy         # or publish from the Base44 builder
-```
+## Структура проекта
 
-There is no `index.html`: the HTML document is rendered on the server from `src/routes/__root.jsx`. The build runs through the [Cloudflare Vite plugin](https://developers.cloudflare.com/workers/vite-plugin/), so dev and build both execute server code in `workerd`.
+Основные файлы и папки репозитория:
 
-## How the pieces fit
+| Файл или папка | Назначение |
+| --- | --- |
+| `src/` | Исходный код приложения |
+| `base44/` | Файлы, связанные с конфигурацией проекта Base44 |
+| `package.json` | Зависимости и команды проекта |
+| `vite.config.js` | Конфигурация Vite и подключенных плагинов |
+| `tailwind.config.js` | Настройки Tailwind CSS |
+| `postcss.config.js` | Конфигурация PostCSS |
+| `eslint.config.js` | Настройки проверки кода |
+| `jsconfig.json` | Настройки JavaScript |
+| `.gitignore` | Список файлов и папок, исключенных из Git |
 
-- **Pages** are files in `src/routes/`. A route's `loader` runs on the server for a document request and in the browser for a client navigation; `Route.useLoaderData()` gives the component the resolved data.
-- **Server functions** (`src/lib/server-fns.js`) are RPCs created with `createServerFn`. `src/start.js` runs every one of them through `authMiddleware`, which sends the visitor's token along, so `context.getBase44()` returns a client acting as that visitor and entity access rules apply. `context.getBase44().asServiceRole` bypasses them, so use it only after authenticating the caller (`.middleware([requireUser])`) and checking they may access the records involved: server functions and server routes are public endpoints anyone can call with any input. See **Server Security** in `AGENTS.md`. Call it only in handlers that need Base44: it reads the platform headers, and a handler that never calls it works without them.
-- **Secrets** are read in server code with `import { secrets } from "base44:runtime"` → `secrets.get("NAME")`, inside a handler. Never `process.env`.
-- **Server routes** (`src/routes/api/*.js`) are raw HTTP endpoints for URLs something other than the app's own code requests (webhooks, downloads, feeds); the app's pages call server functions. `src/start.js` runs every request through `base44RequestMiddleware`, so their `server.handlers` receive the same `context.getBase44()` (`({ request, params, context }) => …`).
-- **Server-only code** lives in `*.server.js` files (TanStack refuses to bundle them for the browser).
-- **Auth** is resolved client-side after hydration (`useAuth()`); the server is anonymous on a document request, so give per-user pages `ssr: false`.
-- **Sign-in and gated pages** are not wired in the starter: `src/components/auth/` holds the pages (login, register, password reset, MCP consent) and a login gate for `src/routes/_authed/`, to add when the app needs them. See **Adding Authentication** in `AGENTS.md`.
-- **AI**: TanStack AI is installed and runs on the Base44 AI gateway, with no API key and usage billed to the app's AI credits. `gatewayModel(context.getBase44())` in `src/lib/ai.server.js` builds the adapter; `AGENTS.md` has a streaming chat example (a server route plus `useChat`).
-- **Caching**: the platform caches only what a route opts into via `headers()` (`Cache-Control: public, s-maxage=…`). Everything else is served fresh.
+## Размещение и доступ
+
+Демонстрационная версия SpeakUp размещена на платформе Base44.
+
+**Ссылка на систему:** [https://stirring-speak-up-flow.base44.app](https://stirring-speak-up-flow.base44.app)
+
+Исходный код проекта хранится в GitHub:
+
+[https://github.com/Anelprudnikova/SpeakUp](https://github.com/Anelprudnikova/SpeakUp)
+
+GitHub используется для хранения и просмотра исходного кода. Опубликованная версия системы доступна отдельно по ссылке Base44.
+
+## Тестирование и демонстрация
+
+Для проверки работы системы предусмотрены сценарии с использованием разных ролей:
+
+1. Создание обращения сотрудником.
+2. Получение обращения руководителем и назначение исполнителя.
+3. Выполнение задачи сотрудником и отправка результата на проверку.
+4. Проверка результата руководителем и закрытие обращения.
+5. Создание обращения внешним клиентом.
+6. Обработка запроса менеджером по работе с клиентами.
+7. Просмотр возможностей администратора.
+
+Для демонстрации используются тестовые учетные записи. Данные для входа предоставляются отдельно и не размещаются в открытом репозитории.
+
+## Текущий статус проекта
+
+SpeakUp представляет собой MVP – минимально жизнеспособную версию информационной системы с основными сценариями обработки обращений.
+
+Основные функции реализованы в демонстрационной версии. Перед полноценным внедрением в рабочую среду необходимы дополнительное тестирование, проверка безопасности и оценка устойчивости системы при увеличении количества пользователей.
+
+## Ограничения и дальнейшее развитие
+
+В дальнейшем планируется:
+
+- Расширение аналитических возможностей.
+- Совершенствование системы уведомлений.
+- Развитие интерфейса и пользовательских сценариев.
+- Интеграция с корпоративными системами, включая 1С и Bitrix24.
+- Дополнительное тестирование производительности и безопасности.
+- Подготовка системы к полноценному внедрению в организации.
+
+## Разработчик
+
+**SpeakUp – Your Voice Matters.**
