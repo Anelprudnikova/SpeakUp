@@ -1,0 +1,150 @@
+{
+  "name": "ClientRequest",
+  "type": "object",
+  "properties": {
+    "client_number": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "question",
+        "complaint",
+        "suggestion",
+        "gratitude",
+        "other"
+      ],
+      "enumColors": [
+        "blue",
+        "red",
+        "purple",
+        "green",
+        "gray"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "received",
+        "in_work",
+        "clarification",
+        "handed_off",
+        "awaiting_internal",
+        "answer_ready",
+        "resolved",
+        "closed"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "yellow",
+        "gray",
+        "yellow",
+        "purple",
+        "green",
+        "gray"
+      ]
+    },
+    "author_email": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_phone": {
+      "type": "string"
+    },
+    "manager_email": {
+      "type": "string"
+    },
+    "manager_name": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "department_id": {
+      "type": "string"
+    },
+    "department_name": {
+      "type": "string"
+    },
+    "internal_request_id": {
+      "type": "string"
+    },
+    "internal_request_number": {
+      "type": "string"
+    },
+    "handoff_by_email": {
+      "type": "string"
+    },
+    "handoff_by_name": {
+      "type": "string"
+    },
+    "handoff_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "deleted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_name": {
+            "type": "string"
+          },
+          "file_uri": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "type",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
