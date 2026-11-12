@@ -1,0 +1,184 @@
+[
+  {
+    "number": "A-001",
+    "title": "Закупки — неполные данные заявки на оборудование",
+    "description": "В заявке на оборудование не хватает обязательных полей.",
+    "proposed_solution": "Сделать обязательными основные сведения, необходимые для обработки заявки.",
+    "type": "problem",
+    "category": "procurement",
+    "priority": "medium",
+    "status": "new"
+  },
+  {
+    "number": "A-002",
+    "title": "Закупки — прозрачность процесса закупок",
+    "description": "Обращение касается повышения прозрачности и понятности процесса закупок.",
+    "type": "improvement",
+    "category": "procurement",
+    "priority": "medium",
+    "status": "review"
+  },
+  {
+    "number": "A-003",
+    "title": "Проектирование — несоответствие номенклатуры каталога",
+    "description": "Несоответствие наименований в каталоге затрудняет работу.",
+    "type": "problem",
+    "category": "design",
+    "priority": "high",
+    "status": "inProgress"
+  },
+  {
+    "number": "A-004",
+    "title": "Обучение — проведение обучающих занятий",
+    "description": "Предложение по организации обучающих занятий.",
+    "type": "improvement",
+    "category": "hr",
+    "priority": "low",
+    "status": "implemented"
+  },
+  {
+    "number": "A-005",
+    "title": "Бухгалтерия — документы",
+    "description": "Обращение по вопросу оформления или обработки документов.",
+    "type": "question",
+    "category": "finance",
+    "priority": "medium",
+    "status": "waiting"
+  },
+  {
+    "number": "A-006",
+    "title": "Внутренние процессы — краткие инструкции",
+    "description": "Предложение создать короткие инструкции для часто выполняемых процессов.",
+    "type": "improvement",
+    "category": "internal",
+    "priority": "medium",
+    "status": "review"
+  },
+  {
+    "number": "A-007",
+    "title": "IT и автоматизация — дублирование ввода данных",
+    "description": "Одни и те же данные приходится вводить в нескольких системах.",
+    "type": "problem",
+    "category": "it",
+    "priority": "high",
+    "status": "new"
+  },
+  {
+    "number": "A-008",
+    "title": "Персонал и обучение — руководство для новых сотрудников",
+    "description": "Предложение создать единый информационный материал для адаптации новых сотрудников.",
+    "type": "improvement",
+    "category": "hr",
+    "priority": "low",
+    "status": "implemented"
+  },
+  {
+    "number": "A-009",
+    "title": "Продажи — версии договоров",
+    "description": "Возникают сложности с отслеживанием актуальных версий договоров.",
+    "type": "problem",
+    "category": "sales",
+    "priority": "high",
+    "status": "inProgress"
+  },
+  {
+    "number": "A-010",
+    "title": "Внутренние процессы — подтверждение выполнения задач",
+    "description": "Предложение улучшить процесс подтверждения завершения рабочих задач.",
+    "type": "improvement",
+    "category": "internal",
+    "priority": "medium",
+    "status": "review"
+  },
+  {
+    "number": "A-011",
+    "title": "Продажи — задержки ответов",
+    "description": "Задержки при ответах на рабочие запросы.",
+    "type": "problem",
+    "category": "sales",
+    "priority": "high",
+    "status": "new"
+  },
+  {
+    "number": "A-012",
+    "title": "Коммуникации — каналы общения",
+    "description": "Предложение упорядочить каналы внутренней коммуникации.",
+    "type": "idea",
+    "category": "communications",
+    "priority": "low",
+    "status": "review"
+  },
+  {
+    "number": "A-013",
+    "title": "Проектирование — история изменений спецификаций",
+    "description": "Необходимо лучше отслеживать изменения проектных спецификаций.",
+    "type": "problem",
+    "category": "design",
+    "priority": "medium",
+    "status": "waiting"
+  },
+  {
+    "number": "A-014",
+    "title": "Проектирование — распределение нагрузки",
+    "description": "Обращение касается распределения рабочей нагрузки между сотрудниками проектного подразделения.",
+    "type": "question",
+    "category": "design",
+    "priority": "medium",
+    "status": "review"
+  },
+  {
+    "number": "A-015",
+    "title": "Проектирование — обязательные поля проектных задач",
+    "description": "Предложение определить минимальный набор обязательных данных для проектных задач.",
+    "type": "improvement",
+    "category": "design",
+    "priority": "medium",
+    "status": "inProgress"
+  },
+  {
+    "number": "A-016",
+    "title": "Обучение — демонстрация оборудования новым сотрудникам",
+    "description": "Предложение организовать демонстрации оборудования для новых сотрудников.",
+    "type": "idea",
+    "category": "hr",
+    "priority": "low",
+    "status": "new"
+  },
+  {
+    "number": "A-017",
+    "title": "Условия труда — зона отдыха",
+    "description": "Предложение организовать зону отдыха.",
+    "type": "improvement",
+    "category": "conditions",
+    "priority": "low",
+    "status": "rejected",
+    "decision_reason": "Отклонено из-за отсутствия подходящего помещения; вопрос можно повторно рассмотреть при изменении условий или планировки."
+  },
+  {
+    "number": "A-018",
+    "title": "Благодарность — обучающие занятия",
+    "description": "Положительная обратная связь о проведенных обучающих занятиях.",
+    "type": "gratitude",
+    "category": "hr",
+    "priority": "low",
+    "status": "closed"
+  },
+  {
+    "number": "A-019",
+    "title": "Документооборот — версии и названия документов",
+    "description": "Обращение по вопросу упорядочивания версий и наименований документов.",
+    "type": "improvement",
+    "category": "documents",
+    "priority": "medium",
+    "status": "review"
+  },
+  {
+    "number": "A-020",
+    "title": "Внутренние процессы — публикация информации об улучшениях",
+    "description": "Предложение публиковать информацию о реализованных внутренних улучшениях.",
+    "type": "improvement",
+    "category": "internal",
+    "priority": "low",
+    "status": "new"
+  }
+]
