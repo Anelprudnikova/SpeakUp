@@ -1,0 +1,89 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "recipient_email": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "manager_name": {
+      "type": "string"
+    },
+    "department_name": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "request_number": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "internal",
+        "client"
+      ],
+      "enumColors": [
+        "blue",
+        "purple"
+      ],
+      "default": "internal"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "recipient_email",
+    "event"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.recipient_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "$or": [
+        {
+          "data.recipient_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
