@@ -1,0 +1,207 @@
+{
+  "name": "Request",
+  "type": "object",
+  "properties": {
+    "request_number": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "proposed_solution": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "improvement",
+        "problem",
+        "idea",
+        "question",
+        "gratitude",
+        "other"
+      ],
+      "enumColors": [
+        "blue",
+        "red",
+        "purple",
+        "yellow",
+        "green",
+        "gray"
+      ]
+    },
+    "category_id": {
+      "type": "string"
+    },
+    "category_key": {
+      "type": "string"
+    },
+    "department_id": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_email": {
+      "type": "string"
+    },
+    "privacy_mode": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "confidential"
+      ],
+      "enumColors": [
+        "gray",
+        "purple"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "enumColors": [
+        "green",
+        "yellow",
+        "red"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "review",
+        "inProgress",
+        "implemented",
+        "waiting",
+        "rejected",
+        "closed"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "yellow",
+        "green",
+        "blue",
+        "red",
+        "gray"
+      ]
+    },
+    "manager_email": {
+      "type": "string"
+    },
+    "manager_name": {
+      "type": "string"
+    },
+    "recipient_id": {
+      "type": "string"
+    },
+    "assignee_email": {
+      "type": "string"
+    },
+    "assignee_name": {
+      "type": "string"
+    },
+    "assignee_id": {
+      "type": "string"
+    },
+    "first_response_due": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "first_response_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "first_response_overdue": {
+      "type": "boolean",
+      "default": false
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decision": {
+      "type": "string"
+    },
+    "decision_reason": {
+      "type": "string"
+    },
+    "planned_actions": {
+      "type": "string"
+    },
+    "actions_taken": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "related_issue_id": {
+      "type": "string"
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "deleted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deleted_by_email": {
+      "type": "string"
+    },
+    "deleted_by_name": {
+      "type": "string"
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    },
+    "source": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "type",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
